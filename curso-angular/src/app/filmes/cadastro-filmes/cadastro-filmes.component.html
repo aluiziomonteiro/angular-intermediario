@@ -6,9 +6,9 @@
 
             <mat-form-field class="full-width">
               <input matInput placeholder="Título*" name="titulo" formControlName="titulo">
-              <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.titulo.errors?.required">Campo obrigatório</mat-error>
-              <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.titulo.errors?.minlength">Tamanho mínimo: 2</mat-error>
-              <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && f.titulo.errors?.maxlength">Tamanho máximo: 256</mat-error>
+              <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && validacao.hasError(f.titulo, 'required')">Campo obrigatório</mat-error>
+              <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && validacao.hasError(f.titulo, 'minlength')">Tamanho mínimo: 2</mat-error>
+              <mat-error *ngIf="(cadastro.touched || cadastro.dirty) && validacao.hasError(f.titulo, 'maxlength')">Tamanho máximo: 256</mat-error>
             </mat-form-field>
 
             <mat-form-field class="full-width">
