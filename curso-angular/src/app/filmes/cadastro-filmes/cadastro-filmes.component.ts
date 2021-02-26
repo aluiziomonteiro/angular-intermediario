@@ -10,9 +10,10 @@ import { ValidarCamposService } from 'src/app/shared/components/campos/validar-c
 export class CadastroFilmesComponent implements OnInit {
 
   cadastro: FormGroup;
+  generos: Array<string>; //
 
-  constructor(public validacao: ValidarCamposService, 
-    private fb: FormBuilder) { }
+  constructor(public validacao: ValidarCamposService,
+              private fb: FormBuilder) { }
 
   get f(){
     return this.cadastro.controls;
@@ -21,24 +22,26 @@ export class CadastroFilmesComponent implements OnInit {
   ngOnInit() {
 
     this.cadastro = this.fb.group({
-      titulo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
+
+      titulo: ['',[Validators.required, Validators.minLength(2), Validators.maxLength(256)]],
       urlFoto: ['', [Validators.minLength(10)]],
-      dtLancamento:['',[Validators.required]],
+      dtLancamento: ['', [Validators.required]],
       descricao: [''],
       nota: [0, [Validators.required, Validators.min(0), Validators.max(10)]],
       urlIMDb: ['', [Validators.minLength(10)]],
-      genero: ['', [Validators.required]]
+      genero: ['', [Validators.required]] //
     });
-
+    // Aqui
+    this.generos = [ 'Ação', 'Aventura', 'Comédia', 'Drama', 'Ficção Científica', 'Romance', 'Terror' ];
   }
 
-  salvar(): void {
-    this.cadastro.markAllAsTouched();
-    if (this.cadastro.invalid){
-      return;
+  salvar(): void{  
+    this.cadastro.markAllAsTouched(); 
+    if(this.cadastro.invalid){ 
+      return; 
     }
 
-    alert('Sucesso' + JSON.stringify(this.cadastro.value, null, 4));
+    alert('Sucesso!\n\n'+ JSON.stringify(this.cadastro.value, null, 4));
   }
 
   limpar(): void {
